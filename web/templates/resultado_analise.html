@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Análise de Sentimento do livro: {{ titulo_livro }}</title>
+    <style type="text/css">
+        h1 {
+        font-family: Bitstream Charter Bold;
+        text-align: center;
+        color: #FFC741;
+        text-shadow: 2px 2px #540A0A;
+        }
+        p {
+        font-family: Bitstream Charter Bold;
+        text-align: center;
+        color: #000000;
+        }
+        div {
+        width:70%;
+        margin: 0px auto;
+        border-radius: 10px 45px;  {# borda arredondada #}
+        padding:12px;
+        border-width:thin;
+        border-style:solid;
+        line-height:1.2;
+        }
+        IMG.displayed {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+    </style>
+</head>
+<body bgcolor="#FFFFDE">
+<h1>Análise de Sentimento do livro: {{ titulo_livro }}</h1>
+<p><i><b>Data da análise: {{ data_analise }}</b></i></p>
+<p><i><b>Horário da análise: {{ horario_analise }}</b></i></p><br>
+
+{# <img src={{ url_for('static', filename='grafico_pizza.png') }}> #}
+{# 'grafico_pizza' é uma variável com o nome do gráfico que será exibido #}
+{# <img src={{ url_for('static', filename=grafico_pizza) }} alt="grafico_pizza" style="width:400px;height:300px;"><br> #}
+
+<IMG class="displayed" src={{ url_for('static', filename=grafico_pizza) }} alt="grafico_pizza" style="width:400px;height:300px;"><br>
+<p><i>Número de resenhas analisadas: {{ documentos|length }}</i></p><br>
+        
+{# Verifica o sentimento do documento e define a cor de fundo para a apresentação deste. #}
+{% for documento in documentos %}
+    {% set sentimento = documento.categoria %}
+    {% if sentimento == "pos" %}
+        {% set cor_fundo_div = "#C7FF85" %}  {# verde claro #}
+        {% set cor_texto = "#075204" %}  {# verde escuro #}
+        {% set cor_borda_div = cor_texto %}
+        {% set sentimento = "positivo" %}
+    {% elif sentimento == "neg" %}
+        {% set cor_fundo_div = "#B56E7B" %}  {# vermelho claro #}
+        {% set cor_texto = "#630214" %}  {# vermelho escuro #}
+        {% set cor_borda_div = cor_texto %}
+        {% set sentimento = "negativo" %}
+    {% endif %}
+
+    {# Define o estilo da div que que contem o texto #}
+    {% set estilo = "background:" + cor_fundo_div + ";border-color:" + cor_borda_div + ";" %}
+    {# {% set estilo = "background:" + "#C7FF85" + ";border-color:" + "#075204" + ";" %} #}
+
+    <div style={{ estilo }}>
+        <font size="2" color={{ cor_texto }}><b><i>{{ sentimento }}</i></b></font><br>
+        <font size="2" color={{ cor_texto }}>{{ documento.texto }}</font>
+    </div><br>
+{% endfor %}
+</body>
+</html>

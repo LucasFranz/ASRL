@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Classificação Manual de tweets</title>
+	</head>
+	<body bgcolor="#FFFEBA">
+	<br>
+	<i><font size="2" color="#4989D1">{{ tweet_nome_arquivo }}</font></i>
+	<br><br>
+	<b><font size="4" color="#695353">{{ tweet_conteudo }}</font></b>
+	<br>
+	<p align="left"><font size="2" color="#536969">tweets restantes: {{ tweets_qtde_restante }}</font></p>
+	
+	<form action="http://localhost:5000/moverTweet" id="formClassificaManual" method="POST"  accept-charset="UTF-8">
+		<input type="radio" name="opiniao" id="pos" value="pos">
+		<label for="pos">Positivo</label>
+		<br>
+		<input type="radio" name="opiniao" id="neg" value="neg">
+		<label for="neg">Negativo</label>		
+		<br>
+		<input type="radio" name="opiniao" id="neu" value="neu">
+		<label for="neu">Neutro</label>
+		<br>
+		<input type="radio" name="opiniao" id="nao_sei" value="nao_sei">
+		<label for="nao_sei">Não sei</label>
+		<br><br>
+		<input type="submit" value="Classificar">
+	</form>
+	</body>
+</html>
