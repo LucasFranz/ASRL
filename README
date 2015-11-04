@@ -1,0 +1,11 @@
+ASRL - Análise de Sentimento em Resenhas de Livro
+
+Sistema que utiliza um classificador Bayesiano treinado
+com base em um corpus de resenhas de livros obtidas da
+rede social Skoob, para classificar a opinião de resenhas
+de livros em positiva ou negativa.
+
+Nos testes realizados, a acurácia do classificador treinado,
+ficou na faixa de 60%, o que permitir concluir que teoricamente,
+a cada 100 resenhas classificadas pelo sistema, 60 delas são
+classificadas corretamente.

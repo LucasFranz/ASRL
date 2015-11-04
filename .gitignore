@@ -1,0 +1,7 @@
+# Essa linha é ignorada no arquivo, é um comentário
+*.pyc
+*~
+*#
+
+# Ignora todos os arquivos do diretório classificacao/
+classificacao/

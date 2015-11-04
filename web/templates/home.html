@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ASRL - Análise de Sentimento em Resenhas de Livros</title>
+    <style type="text/css">
+        h1 {
+        text-align: center;
+        color: #000000;
+        }
+        form {
+        margin: 0 auto;
+        width:500px;
+        }
+        div {
+        align:center;
+        width:50%;
+        border-radius: 17px 10px;  {# borda arredondada #}
+        padding:5px;
+        border-width:thin;
+        border-style:solid;
+        line-height:1.2;
+        }
+    </style>
+</head>
+<body bgcolor="#FFFFDE">
+<h1><i>ASRL</i></h1>
+<br>
+<form action="http://localhost:5000/ASRL/analisar_sentimento" method="POST">
+    <font size="2"><i>Digite uma resenha de livro:</i></font><br><br>
+    <textarea rows="7" cols="70" name="txtResenha" id="txtResenha">{{ resenha }}</textarea>
+    <br><br>
+    <input type="submit" value="Processar">
+
+    <br><br>
+
+    {% if sentimento == 'positivo' or sentimento == 'negativo' %}
+        {# Verifica o sentimento da resenha e define a cor de fundo para a apresentação do resultado. #}
+        {% if sentimento == "positivo" %}
+            {% set cor_fundo_div = "#C7FF85" %}  {# verde claro #}
+            {% set cor_texto = "#075204" %}  {# verde escuro #}
+            {% set cor_borda_div = cor_texto %}
+        {% elif sentimento == "negativo" %}
+            {% set cor_fundo_div = "#B56E7B" %}  {# vermelho claro #}
+            {% set cor_texto = "#630214" %}  {# vermelho escuro #}
+            {% set cor_borda_div = cor_texto %}
+        {% endif %}
+    {% else %}
+        {% set cor_fundo_div = "#FFFFDE" %}  {# verde claro #}
+        {% set cor_texto = "#FFFFDE" %}  {# verde escuro #}
+        {% set cor_borda_div = cor_texto %}
+    {% endif %}
+
+    {# Define o estilo da div que que contem o resultado #}
+    {% set estilo = "background:" + cor_fundo_div + ";border-color:" + cor_borda_div + ";" %}
+
+    <font size="2">sentimento da resenha:</font>
+    <div style={{ estilo }}>
+        <font size="3" color={{ cor_texto }}>{{ sentimento }}</font>
+    </div><br>
+</form>
+</body>
+</html>
