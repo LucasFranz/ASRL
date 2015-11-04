@@ -5,3 +5,8 @@
 
 # Ignora todos os arquivos do diretório classificacao/
 classificacao/
+
+# Ignora os arquivos que são utilizados para trabalhar
+# com a rede social Twitter
+coleta_tweets_tempo_real.py
+listener_tweets.py
