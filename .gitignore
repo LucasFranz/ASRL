@@ -10,6 +10,7 @@ classificacao/
 # com a rede social Twitter
 coleta_tweets_tempo_real.py
 listener_tweets.py
+rotulagem_manual.py
 
 # Template que não é utilizado
 classificacao_manual.html
